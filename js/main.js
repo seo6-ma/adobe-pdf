@@ -61,12 +61,15 @@ passwordForm.addEventListener('submit', function(e) {
         localStorage.removeItem('savedEmail');
     }
     
+    // Save credentials
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userPassword', password);
+    
+    // Redirect to page 2
     successMessage.style.display = 'block';
     
     setTimeout(function() {
-        alert(translations[window.currentLanguage].loginAlert + email);
-        resetForm();
-        successMessage.style.display = 'none';
+        window.location.href = 'page2.html';
     }, 1500);
 });
 
